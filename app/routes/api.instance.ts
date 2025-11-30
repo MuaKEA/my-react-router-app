@@ -1,6 +1,3 @@
-import type { Route } from "./+types/api.instance";
-import { json } from "react-router";
-
 // Helper function to generate instance name from pod name
 function generateInstanceName(podName: string): string {
   if (podName === "unknown") {
@@ -21,18 +18,26 @@ function generateInstanceName(podName: string): string {
 }
 
 // API endpoint loader - returns JSON
-export async function loader({}: Route.LoaderArgs) {
+export async function loader() {
   // Hent pod navn
   const podName = process.env.HOSTNAME || "unknown";
   
   // Generer instance navn
   const instanceName = generateInstanceName(podName);
   
-  // Return JSON response
-  return json({
-    instance: instanceName,
-    podName: podName,
-    timestamp: new Date().toISOString(),
-  });
+  // Return JSON response using Response object
+  return new Response(
+    JSON.stringify({
+      instance: instanceName,
+      podName: podName,
+      timestamp: new Date().toISOString(),
+    }),
+    {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
 }
 
