@@ -31,7 +31,7 @@ export function Welcome({ hostname, timestamp }: WelcomeProps) {
         <div className="max-w-[600px] w-full px-4">
           <div className="rounded-3xl border border-gray-200 p-8 dark:border-gray-700 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-900">
             <h2 className="text-2xl font-bold text-center mb-4 text-gray-800 dark:text-gray-100">
-              Instance Hostname
+              Instance Hostname my react router app dale
             </h2>
             <div className="text-center">
               <p className="text-4xl font-mono font-bold text-blue-600 dark:text-blue-400 mb-2 break-all">
