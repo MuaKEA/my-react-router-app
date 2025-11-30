@@ -4,7 +4,7 @@ import { useLoaderData } from "react-router";
 
 // Loader function to get hostname from environment
 export async function loader({}: Route.LoaderArgs) {
-  // Hent hostname fra container
+  // Hent instance hostname (pod navn)
   // I Kubernetes sættes HOSTNAME via fieldRef til pod navn (metadata.name)
   // Dette er pod navnet som f.eks. "hello-website-xxxxx-xxxxx"
   const hostname = process.env.HOSTNAME || "unknown";
