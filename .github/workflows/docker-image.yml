@@ -26,7 +26,6 @@ jobs:
 
       - name: Build Docker image
         run: |
-          cd /my-react-router-app
           docker build -t ${{ env.IMAGE_NAME }}:latest -f Dockerfile .
 
       - name: Push to Docker Hub
