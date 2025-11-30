@@ -46,7 +46,7 @@ export function Welcome({ hostname, timestamp }: WelcomeProps) {
                 🔄 Refresh siden for at se load balancing i aktion!
               </p>
               <p className="text-xs text-center text-gray-500 dark:text-gray-400 mt-2">
-                Hver instance (pod) har sit eget hostname
+                Hver instance har sit eget unikke navn (genereret fra pod navn)
               </p>
             </div>
           </div>
