@@ -1,6 +1,5 @@
-import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
-import { useLoaderData } from "react-router";
+import type { Route } from "./+types/api.instance";
+import { json } from "react-router";
 
 // Helper function to generate instance name from pod name
 function generateInstanceName(podName: string): string {
@@ -21,29 +20,19 @@ function generateInstanceName(podName: string): string {
   return `instance-${instanceNum}`;
 }
 
-// Loader function to get hostname from environment
+// API endpoint loader - returns JSON
 export async function loader({}: Route.LoaderArgs) {
   // Hent pod navn
   const podName = process.env.HOSTNAME || "unknown";
   
-  // Generer statisk instance navn fra pod navn
-  // Konverterer "hello-website-588dcc776f-nw4sp" til "instance-1", "instance-2", etc.
-  const hostname = generateInstanceName(podName);
+  // Generer instance navn
+  const instanceName = generateInstanceName(podName);
   
-  return {
-    hostname,
+  // Return JSON response
+  return json({
+    instance: instanceName,
+    podName: podName,
     timestamp: new Date().toISOString(),
-  };
+  });
 }
 
-export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
-  ];
-}
-
-export default function Home() {
-  const { hostname, timestamp } = useLoaderData<typeof loader>();
-  return <Welcome hostname={hostname} timestamp={timestamp} />;
-}
